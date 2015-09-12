@@ -1,0 +1,15 @@
+{
+  "name": "simple-sidescroller",
+  "url" : "https://github.com/bdero/simple-sidescroller",
+  "license": "GPL",
+  "tags": ["game", "sidescroller", "example"],
+  "description": "A simple HaxeFlixel sidescroller",
+  "version": "0.0.1",
+  "releasenote": "Unreleased.",
+  "contributors": ["Brandon DeRosier"],
+  "dependencies": {
+    "lime": "2.6.2",
+    "openfl": "3.3.3",
+    "flixel": "3.3.11"
+  }
+}
