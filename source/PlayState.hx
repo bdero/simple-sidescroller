@@ -25,7 +25,7 @@ class PlayState extends FlxState {
         FlxG.camera.fade(FlxColor.BLACK, 0.5, true);
         FlxG.camera.bgColor = FlxColor.ROYAL_BLUE;
 
-        player = new Player(20, 40);
+        player = new Player(50, 50);
         add(player);
 
         ground = new FlxSprite(0, FlxG.height - 20);
@@ -48,7 +48,7 @@ class PlayState extends FlxState {
      * Function that is called once every frame.
      */
     override public function update():Void {
-        FlxG.collide(ground, player);
+        player.onGround(FlxG.collide(ground, player));
 
         super.update();
     }
