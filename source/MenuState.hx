@@ -26,7 +26,7 @@ class MenuState extends FlxState {
         add(titleText);
 
         var titleButton = new FlxButton(0, 0, "Begin", function() {
-            FlxG.camera.fade(FlxColor.BLACK, 1, false, function() {
+            FlxG.camera.fade(FlxColor.BLACK, 0.5, false, function() {
                 FlxG.switchState(new PlayState());
             });
         });

@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -16,6 +17,8 @@ class PlayState extends FlxState {
      */
     override public function create():Void {
         super.create();
+
+        FlxG.camera.fade(FlxColor.BLACK, 0.5, true);
     }
 
     /**
