@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxRect;
 import flixel.util.FlxPoint;
 import flixel.FlxCamera;
 import flixel.FlxObject;
@@ -25,19 +26,33 @@ class PlayState extends FlxState {
     override public function create():Void {
         super.create();
 
+        // Basic camera setup
         FlxG.camera.fade(FlxColor.BLACK, 0.5, true);
         FlxG.camera.bgColor = FlxColor.ROYAL_BLUE;
 
+        // Create player
         player = new Player(50, 50);
         add(player);
 
+        // Configure camera following
         FlxG.camera.follow(
             player,
-            FlxCamera.STYLE_PLATFORMER,
-            new FlxPoint(0, 0), 10
+            null,
+            new FlxPoint(0, 0),
+            10
         );
-        FlxG.camera.followLead.set(15, 10);
+        FlxG.camera.followLead.set(15, 0);
 
+        // Set camera deadzone
+        var deadzoneSize = { x: FlxG.camera.width/8, y: 0 };
+        FlxG.camera.deadzone = FlxRect.get(
+            FlxG.camera.width/2 - deadzoneSize.x/2,
+            FlxG.camera.height/2 - deadzoneSize.y/2,
+            deadzoneSize.x,
+            deadzoneSize.y
+        );
+
+        // Create solid ground
         ground = new FlxSprite(0, FlxG.height - 20);
         ground.makeGraphic(500, 50, FlxColor.GREEN);
         ground.allowCollisions = FlxObject.UP;
@@ -58,9 +73,10 @@ class PlayState extends FlxState {
      * Function that is called once every frame.
      */
     override public function update():Void {
-        player.onGround(FlxG.collide(ground, player));
+        var playerOnGround = FlxG.collide(ground, player);
+
+        player.onGround(playerOnGround);
         FlxG.camera.angle = player.velocity.x/85;
-        //FlxG.camera.zoom = 1 - ZERO_POINT.distanceTo(player.velocity)/500;
 
         super.update();
     }
