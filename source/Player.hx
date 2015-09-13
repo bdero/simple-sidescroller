@@ -21,7 +21,7 @@ class Player extends FlxSprite {
     }
 
     override public function update():Void {
-        if (FlxG.keys.anyPressed(["SPACE"])) {
+        if (FlxG.keys.anyPressed(["W", "SPACE"])) {
             if (currentJumpFrame < MAX_JUMP_FRAMES && !jumpUsed) {
                 jumping = true;
                 velocity.y = -250;
@@ -29,6 +29,17 @@ class Player extends FlxSprite {
             }
         } else if (jumping) {
             jumpUsed = true;
+        }
+
+        var left = FlxG.keys.anyPressed(["A", "LEFT"]);
+        var right = FlxG.keys.anyPressed(["D", "RIGHT"]);
+
+        acceleration.x = 0;
+        var accel = jumping ? 300 : 800;
+        if (left && !right) {
+            acceleration.x -= (velocity.x > 0) ? accel*2 : accel;
+        } else if (right && !left) {
+            acceleration.x += (velocity.x < 0) ? accel*2 : accel;
         }
 
         super.update();
