@@ -16,6 +16,30 @@ class MenuState extends FlxState {
      */
     override public function create():Void {
         super.create();
+
+        var titleText = new FlxText(0, FlxG.height*0.3, FlxG.width, "Simple Sidescroller", 32);
+        titleText.alignment = "center";
+        add(titleText);
+
+        var titleButton = new FlxButton(0, 0, "Begin", function() {
+            trace("pressed");
+        });
+
+        var bSize = { x: 250, y: 50 };
+        titleButton.origin.set(0, 0);
+        titleButton.setGraphicSize(bSize.x, bSize.y);
+        titleButton.setSize(bSize.x, bSize.y);
+        titleButton.setPosition(
+            FlxG.width/2 - titleButton.width/2,
+            FlxG.height*0.6
+        );
+        var fontSize = 20;
+        var bLabel:FlxText = titleButton.label;
+        bLabel.alignment = "center";
+        bLabel.fieldWidth = titleButton.width;
+        bLabel.size = fontSize;
+        bLabel.offset.set(0, -fontSize/2);
+        add(titleButton);
     }
 
     /**
