@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -17,12 +18,17 @@ class MenuState extends FlxState {
     override public function create():Void {
         super.create();
 
+        FlxG.camera.bgColor = FlxColor.BEIGE;
+
         var titleText = new FlxText(0, FlxG.height*0.3, FlxG.width, "Simple Sidescroller", 32);
         titleText.alignment = "center";
+        titleText.color = FlxColor.CHARCOAL;
         add(titleText);
 
         var titleButton = new FlxButton(0, 0, "Begin", function() {
-            trace("pressed");
+            FlxG.camera.fade(FlxColor.BLACK, 1, false, function() {
+                FlxG.switchState(new PlayState());
+            });
         });
 
         var bSize = { x: 250, y: 50 };
@@ -35,7 +41,6 @@ class MenuState extends FlxState {
         );
         var fontSize = 20;
         var bLabel:FlxText = titleButton.label;
-        bLabel.alignment = "center";
         bLabel.fieldWidth = titleButton.width;
         bLabel.size = fontSize;
         bLabel.offset.set(0, -fontSize/2);
