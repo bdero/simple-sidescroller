@@ -18,6 +18,7 @@ class MenuState extends FlxState {
     override public function create():Void {
         super.create();
 
+        FlxG.camera.fade(FlxColor.BLACK, 0.5, true);
         FlxG.camera.bgColor = FlxColor.BEIGE;
 
         var titleText = new FlxText(0, FlxG.height*0.3, FlxG.width, "Simple Sidescroller", 32);

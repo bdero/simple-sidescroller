@@ -19,6 +19,7 @@ class PlayState extends FlxState {
         super.create();
 
         FlxG.camera.fade(FlxColor.BLACK, 0.5, true);
+        FlxG.camera.bgColor = FlxColor.ROYAL_BLUE;
     }
 
     /**
