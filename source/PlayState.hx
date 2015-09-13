@@ -1,5 +1,7 @@
 package;
 
+import flixel.util.FlxPoint;
+import flixel.FlxCamera;
 import flixel.FlxObject;
 import flixel.util.FlxColor;
 import flixel.FlxG;
@@ -15,6 +17,7 @@ import flixel.util.FlxMath;
 class PlayState extends FlxState {
     private var player:Player;
     private var ground:FlxSprite;
+    private var ZERO_POINT = new FlxPoint(0, 0);
 
     /**
      * Function that is called up when to state is created to set it up.
@@ -27,6 +30,13 @@ class PlayState extends FlxState {
 
         player = new Player(50, 50);
         add(player);
+
+        FlxG.camera.follow(
+            player,
+            FlxCamera.STYLE_PLATFORMER,
+            new FlxPoint(0, 0), 10
+        );
+        FlxG.camera.followLead.set(15, 10);
 
         ground = new FlxSprite(0, FlxG.height - 20);
         ground.makeGraphic(500, 50, FlxColor.GREEN);
@@ -49,6 +59,8 @@ class PlayState extends FlxState {
      */
     override public function update():Void {
         player.onGround(FlxG.collide(ground, player));
+        FlxG.camera.angle = player.velocity.x/85;
+        //FlxG.camera.zoom = 1 - ZERO_POINT.distanceTo(player.velocity)/500;
 
         super.update();
     }
