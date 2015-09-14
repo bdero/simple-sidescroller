@@ -8,9 +8,6 @@ import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.text.FlxText;
-import flixel.ui.FlxButton;
-import flixel.util.FlxMath;
 
 /**
  * A FlxState which can be used for the actual gameplay.
@@ -31,7 +28,7 @@ class PlayState extends FlxState {
         FlxG.camera.bgColor = FlxColor.ROYAL_BLUE;
 
         // Create player
-        player = new Player(50, 50);
+        player = new Player(32, 32);
         add(player);
 
         // Configure camera following
