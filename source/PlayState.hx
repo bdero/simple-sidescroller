@@ -28,7 +28,7 @@ class PlayState extends GameState {
         FlxG.camera.bgColor = FlxColor.ROYAL_BLUE;
 
         // Create player
-        player = new Player(32, 32);
+        player = new Player();
         add(player);
 
         // Configure camera following

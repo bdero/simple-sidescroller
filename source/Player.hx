@@ -1,12 +1,13 @@
 package;
 
+import flixel.util.FlxPoint;
 import flixel.FlxObject;
 import flixel.FlxG;
 import flixel.FlxSprite;
 
 class Player extends FlxSprite {
     private var MAX_JUMP_FRAMES = 20;
-    private var JUMP_VELOCITY = -250;
+    private var JUMP_VELOCITY = -125;
     private var currentJumpFrame = 0;
     private var jumping = true;
     private var jumpUsed = true;
@@ -14,13 +15,10 @@ class Player extends FlxSprite {
     private var SIT_FRAMES = 300;
     private var currentIdleFrame = 0;
 
-    public function new(inX:Int, inY:Int) {
-        super(inX, inY);
+    public function new() {
+        super(16, 16);
 
         loadGraphic("assets/images/player.png", true, 16, 16);
-        origin.set(0, 0);
-        setGraphicSize(32, 32);
-        setSize(32, 32);
 
         setFacingFlip(FlxObject.LEFT, true, false);
         setFacingFlip(FlxObject.RIGHT, false, false);
@@ -31,9 +29,9 @@ class Player extends FlxSprite {
         animation.add("idle", [6, 7], 1, true);
         animation.add("sit", [8, 9], 4, false);
 
-        acceleration.y = 1000;
-        drag.x = 800;
-        maxVelocity.set(200, 400);
+        acceleration.y = 500;
+        drag.x = 400;
+        maxVelocity.set(100, 200);
     }
 
     override public function update():Void {
@@ -65,7 +63,7 @@ class Player extends FlxSprite {
         var right = FlxG.keys.anyPressed(["D", "RIGHT"]);
 
         acceleration.x = 0;
-        var accel = jumping ? 300 : 800;
+        var accel = jumping ? 150 : 400;
         if (left && !right) {
             acceleration.x -= (velocity.x > 0) ? accel*2 : accel;
             facing = FlxObject.LEFT;
