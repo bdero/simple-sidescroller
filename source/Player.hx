@@ -5,6 +5,7 @@ import flixel.FlxSprite;
 
 class Player extends FlxSprite {
     private var MAX_JUMP_FRAMES = 20;
+    private var JUMP_VELOCITY = -250;
 
     private var currentJumpFrame = 0;
     private var jumping = true;
@@ -24,7 +25,7 @@ class Player extends FlxSprite {
         if (FlxG.keys.anyPressed(["W", "SPACE"])) {
             if (currentJumpFrame < MAX_JUMP_FRAMES && !jumpUsed) {
                 jumping = true;
-                velocity.y = -250;
+                velocity.y = JUMP_VELOCITY;
                 currentJumpFrame++;
             }
         } else if (jumping) {
