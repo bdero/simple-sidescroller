@@ -27,6 +27,13 @@ class PlayState extends GameState {
         FlxG.camera.fade(FlxColor.BLACK, 0.5, true);
         FlxG.camera.bgColor = FlxColor.ROYAL_BLUE;
 
+        // Create solid ground
+        ground = new FlxSprite(0, FlxG.height - 20);
+        ground.makeGraphic(500, 50, FlxColor.GREEN);
+        ground.allowCollisions = FlxObject.UP;
+        ground.immovable = true;
+        add(ground);
+
         // Create player
         player = new Player();
         add(player);
@@ -48,14 +55,6 @@ class PlayState extends GameState {
             deadzoneSize.x,
             deadzoneSize.y
         );
-
-        // Create solid ground
-        ground = new FlxSprite(0, FlxG.height - 20);
-        ground.makeGraphic(500, 50, FlxColor.GREEN);
-        ground.allowCollisions = FlxObject.UP;
-        ground.immovable = true;
-        add(ground);
-
     }
 
     /**
