@@ -11,7 +11,7 @@ env:
   - TARGET=html5
 
 install:
-  - haxelib install flixel
+  - haxelib install flixel > /dev/null
   - haxelib list
 
 script:
