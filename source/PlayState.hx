@@ -1,5 +1,6 @@
 package;
 
+import GameState;
 import flixel.util.FlxRect;
 import flixel.util.FlxPoint;
 import flixel.FlxCamera;
@@ -7,12 +8,11 @@ import flixel.FlxObject;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.FlxState;
 
 /**
  * A FlxState which can be used for the actual gameplay.
  */
-class PlayState extends FlxState {
+class PlayState extends GameState {
     private var player:Player;
     private var ground:FlxSprite;
     private var ZERO_POINT = new FlxPoint(0, 0);
@@ -70,6 +70,10 @@ class PlayState extends FlxState {
      * Function that is called once every frame.
      */
     override public function update():Void {
+        if (FlxG.keys.justPressed.ESCAPE) {
+            transitionState(new MenuState());
+        }
+
         var playerOnGround = FlxG.collide(ground, player);
 
         player.onGround(playerOnGround);

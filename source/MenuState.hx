@@ -3,14 +3,13 @@ package;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 
 /**
  * A FlxState which can be used for the game's menu.
  */
-class MenuState extends FlxState {
+class MenuState extends GameState {
     /**
      * Function that is called up when to state is created to set it up.
      */
@@ -26,9 +25,7 @@ class MenuState extends FlxState {
         add(titleText);
 
         var titleButton = new FlxButton(0, 0, "Begin", function() {
-            FlxG.camera.fade(FlxColor.BLACK, 0.5, false, function() {
-                FlxG.switchState(new PlayState());
-            });
+            pressStart();
         });
 
         var bSize = { x: 250, y: 50 };
@@ -47,6 +44,10 @@ class MenuState extends FlxState {
         add(titleButton);
     }
 
+    private function pressStart() {
+        transitionState(new PlayState());
+    }
+
     /**
      * Function that is called when this state is destroyed - you might want to
      * consider setting all objects this state uses to null to help garbage collection.
@@ -59,6 +60,13 @@ class MenuState extends FlxState {
      * Function that is called once every frame.
      */
     override public function update():Void {
+        if (FlxG.keys.anyJustPressed(["SPACE", "ENTER"])) {
+            pressStart();
+        }
+        if (FlxG.keys.justPressed.ESCAPE) {
+            transitionState(null);
+        }
+
         super.update();
     }
 }
