@@ -10,6 +10,7 @@
   "dependencies": {
     "lime": "2.6.2",
     "openfl": "3.3.3",
-    "flixel": "3.3.11"
+    "flixel": "3.3.11",
+    "flixel-addons": "1.1.0"
   }
 }
