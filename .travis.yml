@@ -1,0 +1,18 @@
+language: haxe
+
+haxe:
+  - "3.2.0"
+  - development
+
+env:
+  - TARGET=flash
+  - TARGET=neko
+  - TARGET=cpp
+  - TARGET=html5
+
+install:
+  - haxelib install flixel
+  - haxelib list
+
+script:
+  - haxelib run lime build $TARGET
