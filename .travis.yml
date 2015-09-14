@@ -13,6 +13,7 @@ env:
 install:
   - haxelib install hxcpp > /dev/null
   - haxelib install flixel > /dev/null
+  - haxelib install flixel-addons > /dev/null
   - haxelib list
 
 script:
