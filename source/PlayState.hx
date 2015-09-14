@@ -34,7 +34,7 @@ class PlayState extends GameState {
         // Configure camera following
         FlxG.camera.follow(
             player,
-            null,
+            -1,
             new FlxPoint(0, 0),
             10
         );
