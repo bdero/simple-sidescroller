@@ -1,10 +1,9 @@
 package;
 
+import flixel.addons.ui.FlxButtonPlus;
 import flixel.util.FlxColor;
 import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.text.FlxText;
-import flixel.ui.FlxButton;
 
 /**
  * A FlxState which can be used for the game's menu.
@@ -25,23 +24,19 @@ class MenuState extends GameState {
         titleText.color = FlxColor.CHARCOAL;
         add(titleText);
 
-        var titleButton = new FlxButton(0, 0, "Begin", function() {
-            pressStart();
-        });
-
-        var bSize = { x: 125, y: 25 };
-        titleButton.origin.set(0, 0);
-        titleButton.setGraphicSize(bSize.x, bSize.y);
-        titleButton.setSize(bSize.x, bSize.y);
-        titleButton.setPosition(
-            FlxG.width/2 - titleButton.width/2,
-            FlxG.height*0.6
+        var buttonSize = { x: 100, y: 20 };
+        var titleButton = new FlxButtonPlus(
+            FlxG.width/2 - buttonSize.x/2,
+            FlxG.height*0.6,
+            function() {
+                pressStart();
+            },
+            "Begin",
+            buttonSize.x,
+            buttonSize.y
         );
-        var fontSize = 8;
-        var bLabel:FlxText = titleButton.label;
-        bLabel.fieldWidth = titleButton.width;
-        bLabel.size = fontSize;
-        bLabel.offset.y = -2;
+        titleButton.updateInactiveButtonColors([0xff888888, 0xffaaaaaa]);
+        titleButton.updateActiveButtonColors([0xffbbbbbb, 0xffaaaaaa]);
         add(titleButton);
     }
 
