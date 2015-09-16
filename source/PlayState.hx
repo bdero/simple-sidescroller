@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.editors.tiled.TiledMap;
 import GameState;
 import flixel.util.FlxRect;
 import flixel.util.FlxPoint;
@@ -16,6 +17,8 @@ class PlayState extends GameState {
     private var player:Player;
     private var ground:FlxSprite;
     private var ZERO_POINT = new FlxPoint(0, 0);
+
+    private var map:TiledMap;
 
     /**
      * Function that is called up when to state is created to set it up.
